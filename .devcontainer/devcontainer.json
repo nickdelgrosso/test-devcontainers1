@@ -22,7 +22,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "conda env create -f environment.yaml && conda init"
+	"postCreateCommand": "conda env create -f environment.yaml && conda init && echo 'conda activate first' >> ~/.bashrc && conda run -n first python -m uv pip install -e ."
 
 	// Configure tool-specific properties.
 	// "customizations": {},
