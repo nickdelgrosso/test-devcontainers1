@@ -4,6 +4,8 @@
 	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/conda:1": {
 			"addCondaForge": true,
@@ -11,18 +13,32 @@
 		}
 	},
 
+	// Folders to mount to the container (note: does not copy the data into the container.)
 	"mounts": [
 		"source=${localEnv:HOME}${localEnv:USERPROFILE},target=/host-home-folder,type=bind,consistency=cached"
 	],
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "conda env create -f environment.yaml && conda init && echo 'conda activate first' >> ~/.bashrc && conda run -n first python -m uv pip install -e ."
+	"postCreateCommand": "conda env create -f environment.yaml && conda init && echo 'conda activate first' >> ~/.bashrc && conda run -n first python -m uv pip install -e .",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode-remote.remote-containers",
+				"ms-toolsai.jupyter-keymap",
+				"ms-vscode-remote.remote-ssh",
+				"ms-vscode-remote.remote-ssh-edit",
+				"ms-vscode.remote-server",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-vscode.remote-explorer",
+				"ms-python.python",
+				"ms-python.vscode-pylance"
+			]
+		}
+	}
 
 	// Configure tool-specific properties.
 	// "customizations": {},
